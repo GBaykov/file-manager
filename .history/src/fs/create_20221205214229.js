@@ -15,7 +15,7 @@ const create = async () => {
         console.log("Файл был создан");
       }
     );
-  } else throw Error("FS operation failed");
+  } else throw new Error();
 };
 
 await create();
