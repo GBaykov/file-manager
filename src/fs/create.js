@@ -5,17 +5,12 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const create = async () => {
-  if (!fs.existsSync(path.join(__dirname, "files", "fresh.txt"))) {
-    fs.writeFile(
-      path.join(__dirname, "files", "fresh.txt"),
-      "I am fresh and young",
-      (err) => {
-        if (err) throw err;
-        console.log("Файл был создан");
+export const create = async (new_file_name, dirname) => {
+  if (!fs.existsSync(path.join(dirname, new_file_name))) {
+    fs.writeFile(path.join(dirname, new_file_name), "", (err) => {
+      if (err) {
+        console.log("Operation failed 11", err);
       }
-    );
-  } else throw Error("FS operation failed");
+    });
+  } else console.log("Operation failed 13");
 };
-
-await create();
