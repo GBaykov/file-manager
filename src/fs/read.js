@@ -9,14 +9,16 @@ const { stdout } = process;
 import { createReadStream } from "fs";
 
 export const read = async (file_path) => {
+  console.log(file_path);
   const fileForRead = path.join(file_path);
+  console.log(fileForRead);
   if (fs.existsSync(fileForRead)) {
     const input = createReadStream(fileForRead, "utf-8");
     input.on("data", (chunk) => stdout.write(chunk));
     input.on("error", (error) =>
-      console.log("Operation failed 18", error.message)
+      console.log("Operation failed", error.message)
     );
-  } else console.log("Operation failed 20");
+  } else console.log("Operation failed");
 };
 
 // await read();

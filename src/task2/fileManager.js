@@ -6,6 +6,7 @@ import readline from "readline";
 import process from "process";
 import { read } from "../fs/read.js";
 import { create } from "../fs/create.js";
+import { rename } from "../fs/rename.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -22,11 +23,13 @@ const fileManager = () => {
 
   const comandsManager = (comand, args) => {
     if (comand === "cat") {
-      read(path.join(__dirname, args[0]));
+      read(args[0]);
     } else if (comand === "add") {
       create(args[0], __dirname);
     } else if (comand === ".exit") {
       commandLineIO.close();
+    } else if (comand === "rn") {
+      rename(args[0], args[1]);
     } else {
       console.log("Invalid input");
     }
