@@ -16,9 +16,9 @@ export const read = async (file_path) => {
     const input = createReadStream(fileForRead, "utf-8");
     input.on("data", (chunk) => stdout.write(chunk));
     input.on("error", (error) =>
-      console.log("Operation failed", error.message)
+      console.log("Operation failed read1", error.message)
     );
-  } else console.log("Operation failed");
+  } else console.log("Operation failed read2");
 };
 
 // await read();

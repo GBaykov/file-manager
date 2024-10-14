@@ -1,4 +1,3 @@
-import { readdir, copyFile, stat, mkdir } from "node:fs/promises";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -7,36 +6,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 import { createReadStream, createWriteStream } from "fs";
 
-const copy = async () => {
-  const firsDir = path.join(__dirname, "files");
-  const resultDir = path.join(__dirname, "files_copy");
-  copyDir(firsDir, resultDir);
+export const copy = async (path_to_file, path_to_new_directory) => {
+  const new_file = path.join(
+    path_to_new_directory,
+    path.basename(path_to_file)
+  );
 
-  async function copyDir(firstDir, resultDir) {
-    try {
-      try {
-        await mkdir(resultDir);
-      } catch {
-        throw Error("FS operation failed");
-      }
-      const files = await readdir(firstDir);
-
-      for (const file of files) {
-        console.log(firstDir);
-        const statFile = await stat(path.join(firstDir, file));
-
-        if (statFile.isFile()) {
-          createReadStream(path.join(firstDir, file)).pipe(
-            createWriteStream(path.join(resultDir, file))
-          );
-        } else {
-          copyDir(path.join(resultDir, file), path.join(resultDir, file));
-        }
-      }
-    } catch (err) {
-      console.error(err);
-    }
+  if (!fs.existsSync(path_to_file) || fs.existsSync(new_file)) {
+    console.log("Operation failed copy1");
+  } else {
+    createReadStream(path_to_file).pipe(createWriteStream(new_file));
   }
 };
-
-await copy();

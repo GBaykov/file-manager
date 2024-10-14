@@ -6,15 +6,10 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const remove = async () => {
-  if (fs.existsSync(path.join(__dirname, "files", "fileToRemove.txt"))) {
-    fs.unlink(
-      path.join(__dirname, "files", "fileToRemove.txt"),
-      function (err) {
-        if (err) throw new Error("FS operation failed");
-      }
-    );
-  } else throw new Error("FS operation failed");
+export const remove = async (path_to_file) => {
+  if (fs.existsSync(path_to_file)) {
+    fs.unlink(path.join(path_to_file), function (err) {
+      if (err) console.log("Operation failed remove1", err);
+    });
+  } else console.log("Operation failed remove2");
 };
-
-await remove();
