@@ -10,6 +10,7 @@ import { rename } from "../fs/rename.js";
 import { copy } from "../fs/copy.js";
 import { remove } from "../fs/delete.js";
 import { move } from "../fs/move.js";
+import { operatingSystem } from "../operatingSystem/operatingSystem.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -39,6 +40,8 @@ const fileManager = () => {
       move(args[0], args[1]);
     } else if (comand === "rm") {
       remove(args[0]);
+    } else if (comand === "os") {
+      operatingSystem(args[0]);
     } else {
       console.log("Invalid input");
     }
