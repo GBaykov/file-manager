@@ -13,7 +13,7 @@ export const copy = async (path_to_file, path_to_new_directory) => {
   );
 
   if (!fs.existsSync(path_to_file) || fs.existsSync(new_file)) {
-    console.log("Operation failed copy1");
+    console.log("Operation failed");
   } else {
     createReadStream(path_to_file).pipe(createWriteStream(new_file));
   }

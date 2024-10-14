@@ -9,7 +9,7 @@ const __dirname = dirname(__filename);
 export const remove = async (path_to_file) => {
   if (fs.existsSync(path_to_file)) {
     fs.unlink(path.join(path_to_file), function (err) {
-      if (err) console.log("Operation failed remove1", err);
+      if (err) console.log("Operation failed", err);
     });
-  } else console.log("Operation failed remove2");
+  } else console.log("Operation failed");
 };

@@ -13,6 +13,10 @@ import { move } from "../fs/move.js";
 import { operatingSystem } from "../operatingSystem/operatingSystem.js";
 import { compress } from "../zip/compress.js";
 import { decompress } from "../zip/decompress.js";
+import { calculateHash } from "../hash/calcHash.js";
+import { up } from "../nwd/up.js";
+import { cd } from "../nwd/cd.js";
+import { ls } from "../nwd/ls.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -48,6 +52,14 @@ const fileManager = () => {
       compress(args[0], args[1]);
     } else if (comand === "decompress") {
       decompress(args[0], args[1]);
+    } else if (comand === "hash") {
+      calculateHash(args[0]);
+    } else if (comand === "up") {
+      up();
+    } else if (comand === "cd") {
+      cd(args[0]);
+    } else if (comand === "ls") {
+      ls(args[0]);
     } else {
       console.log("Invalid input");
     }

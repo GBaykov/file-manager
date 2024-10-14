@@ -9,8 +9,8 @@ export const create = async (new_file_name, dirname) => {
   if (!fs.existsSync(path.join(dirname, new_file_name))) {
     fs.writeFile(path.join(dirname, new_file_name), "", (err) => {
       if (err) {
-        console.log("Operation failed create1", err);
+        console.log("Operation failed", err);
       }
     });
-  } else console.log("Operation failed create2");
+  } else console.log("Operation failed");
 };
