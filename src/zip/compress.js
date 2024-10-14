@@ -7,16 +7,18 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const compress = async () => {
-  const input = fs.createReadStream(
-    path.join(__dirname, "/files", "fileToCompress.txt")
-  );
-  const output = fs.createWriteStream(
-    path.join(__dirname, "/files", "archive.gz")
-  );
-  const gzip = zlib.createGzip();
+export const compress = async (path_to_file, path_to_destination) => {
+  const input = fs.createReadStream(path_to_file);
+  const output = fs.createWriteStream(path_to_destination);
+  const brotli = zlib.createBrotliCompress();
 
-  pipeline(input, gzip, output, (err) => err);
+  if (!fs.existsSync(path_to_file)) {
+    console.log("Operation failed 16");
+  } else {
+    pipeline(input, brotli, output, (err) => {
+      if (err) {
+        console.log("Operation failed 20", err);
+      }
+    });
+  }
 };
-
-await compress();
